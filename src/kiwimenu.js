@@ -8,6 +8,7 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import * as Util from 'resource:///org/gnome/shell/misc/util.js';
+import { openForceQuitOverlay } from './forceQuitOverlay.js';
 
 const TEXT_DECODER = new TextDecoder();
 
@@ -201,7 +202,17 @@ export const KiwiMenu = GObject.registerClass(
 
     _makeMenu(title, cmds) {
       const menuItem = new PopupMenu.PopupMenuItem(title);
-      menuItem.connect('activate', () => Util.spawn(cmds));
+      const isForceQuit = Array.isArray(cmds) && cmds.length === 1 && cmds[0] === 'xkill';
+
+      menuItem.connect('activate', () => {
+        if (isForceQuit) {
+          this.menu.close(true);
+          this._openForceQuitOverlay();
+          return;
+        }
+
+        Util.spawn(cmds);
+      });
       this.menu.addMenuItem(menuItem);
     }
 
@@ -737,6 +748,14 @@ export const KiwiMenu = GObject.registerClass(
       items.sort((a, b) => b.timestamp - a.timestamp);
 
       return items.slice(0, MAX_RECENT_ITEMS);
+    }
+
+    _openForceQuitOverlay() {
+      try {
+        openForceQuitOverlay();
+      } catch (error) {
+        logError(error, 'Failed to open Force Quit overlay');
+      }
     }
   }
 );
