@@ -17,100 +17,100 @@ msgstr ""
 
 #: src/kiwimenu.js
 msgid "About This PC"
-msgstr ""
+msgstr "Sobre este PC"
 
 #: src/kiwimenu.js
 msgid "System Settings..."
-msgstr ""
+msgstr "Definições do sistema..."
 
 #: src/kiwimenu.js
 msgid "App Store..."
-msgstr ""
+msgstr "Loja de aplicações..."
 
 #: src/kiwimenu.js
 msgid "Recent Items"
-msgstr ""
+msgstr "Itens recentes"
 
 #: src/kiwimenu.js
 msgid "Force Quit"
-msgstr ""
+msgstr "Forçar encerramento"
 
 #: src/kiwimenu.js
 msgid "Sleep"
-msgstr ""
+msgstr "Suspender"
 
 #: src/kiwimenu.js
 msgid "Restart..."
-msgstr ""
+msgstr "Reiniciar..."
 
 #: src/kiwimenu.js
 msgid "Shut Down..."
-msgstr ""
+msgstr "Encerrar..."
 
 #: src/kiwimenu.js
 msgid "Lock Screen"
-msgstr ""
+msgstr "Bloquear ecrã"
 
 #: src/kiwimenu.js
 msgid "Log Out..."
-msgstr ""
+msgstr "Terminar sessão..."
 
 #: src/kiwimenu.js
 #, javascript-format
 msgid "Log Out %s..."
-msgstr ""
+msgstr "Terminar sessão de %s..."
 
 #: src/recentItemsSubmenu.js
 msgid "No recent items"
-msgstr ""
+msgstr "Sem itens recentes"
 
 #: src/recentItemsSubmenu.js
 msgid "Files"
-msgstr ""
+msgstr "Ficheiros"
 
 #: src/recentItemsSubmenu.js
 msgid "Folders"
-msgstr ""
+msgstr "Pastas"
 
 #: src/recentItemsSubmenu.js
 msgid "Clear menu"
-msgstr ""
+msgstr "Limpar menu"
 
 #: prefs.js
 msgid "Options"
-msgstr ""
+msgstr "Opções"
 
 #: prefs.js
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 #: prefs.js
 msgid "Adjust how the Kiwi Menu looks and behaves."
-msgstr ""
+msgstr "Ajuste a aparência e o comportamento do Kiwi Menu."
 
 #: prefs.js
 msgid "Menu Icon"
-msgstr ""
+msgstr "Ícone do menu"
 
 #: prefs.js
 msgid "Choose the icon to display in the panel."
-msgstr ""
+msgstr "Escolha o ícone a apresentar no painel."
 
 #: prefs.js
 msgid "Panel"
-msgstr ""
+msgstr "Painel"
 
 #: prefs.js
 msgid "Hide or show the Activities button from the top bar."
-msgstr ""
+msgstr "Ocultar ou mostrar o botão Atividades na barra superior."
 
 #: prefs.js
 msgid "Hide Activities Menu"
-msgstr ""
+msgstr "Ocultar menu de atividades"
 
 #: prefs.js
 msgid "Display the Activities button in the top panel."
-msgstr ""
+msgstr "Apresentar o botão Atividades no painel superior."
 
 #: prefs.js
 msgid "Quick Settings"
@@ -146,39 +146,39 @@ msgstr "Remove a ação rápida do atalho para Configurações."
 
 #: prefs.js
 msgid "About"
-msgstr ""
+msgstr "Sobre"
 
 #: prefs.js
 msgid "Website"
-msgstr ""
+msgstr "Website"
 
 #: prefs.js
 msgid "Report an Issue"
-msgstr ""
+msgstr "Reportar um problema"
 
 #: prefs.js
 msgid "Credits"
-msgstr ""
+msgstr "Créditos"
 
 #: prefs.js
 msgid "Legal"
-msgstr ""
+msgstr "Legal"
 
 #: prefs.js
 msgid "License"
-msgstr ""
+msgstr "Licença"
 
 #: prefs.js
 msgid "Kiwi Menu is free and open source software."
-msgstr ""
+msgstr "Kiwi Menu é um software gratuito e de código aberto."
 
 #: prefs.js
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "Licença Pública Geral GNU v3.0"
 
 #: prefs.js
 msgid "Copyright"
-msgstr ""
+msgstr "Direitos de autor"
 
 #: prefs.js
 msgid ""
