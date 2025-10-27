@@ -84,6 +84,51 @@ const OptionsPage = GObject.registerClass(
       this.add(menuGroup);
       this.add(behaviorGroup);
 
+      const quickSettingsGroup = new Adw.PreferencesGroup({
+        title: this._('Quick Settings'),
+        description: this._('Choose which default quick action buttons stay visible.'),
+      });
+
+      const quickActionToggles = [
+        {
+          key: 'hide-lock-button',
+          title: this._('Hide Lock Screen Button'),
+          subtitle: this._('Remove the lock screen quick action button.'),
+        },
+        {
+          key: 'hide-power-button',
+          title: this._('Hide Power Button'),
+          subtitle: this._('Remove the power menu quick action button.'),
+        },
+        {
+          key: 'hide-settings-button',
+          title: this._('Hide Settings Button'),
+          subtitle: this._('Remove the settings shortcut quick action button.'),
+        },
+      ];
+
+      quickActionToggles.forEach(({ key, title, subtitle }) => {
+        const toggle = new Gtk.Switch({
+          valign: Gtk.Align.CENTER,
+          active: this._settings.get_boolean(key),
+        });
+
+        const row = new Adw.ActionRow({
+          title,
+          subtitle,
+          activatable_widget: toggle,
+        });
+        row.add_suffix(toggle);
+
+        quickSettingsGroup.add(row);
+
+        toggle.connect('notify::active', (widget) => {
+          this._settings.set_boolean(key, widget.get_active());
+        });
+      });
+
+      this.add(quickSettingsGroup);
+
       iconSelectorRow.connect('notify::selected', (widget) => {
         this._settings.set_int('icon', widget.selected);
       });
@@ -91,6 +136,7 @@ const OptionsPage = GObject.registerClass(
       activityMenuSwitch.connect('notify::active', (widget) => {
         this._settings.set_boolean('activity-menu-visibility', !widget.get_active());
       });
+
     }
   }
 );

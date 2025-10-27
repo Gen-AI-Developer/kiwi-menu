@@ -11,6 +11,21 @@
       <summary>Hide Activity Menu</summary>
       <description>Change Activity Menu Visibility Status</description>
     </key>
+    <key type="b" name="hide-lock-button">
+      <default>false</default>
+      <summary>Hide Lock Screen quick settings button</summary>
+      <description>Hide the lock screen quick settings action when enabled</description>
+    </key>
+    <key type="b" name="hide-power-button">
+      <default>false</default>
+      <summary>Hide Power quick settings button</summary>
+      <description>Hide the power quick settings action when enabled</description>
+    </key>
+    <key type="b" name="hide-settings-button">
+      <default>false</default>
+      <summary>Hide Settings quick settings button</summary>
+      <description>Hide the settings quick settings action when enabled</description>
+    </key>
     <key type="i" name="prefs-default-width">
       <default>700</default>
       <summary>Default width for the preferences window</summary>
