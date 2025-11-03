@@ -1,4 +1,4 @@
-# Kiwi Menu
+# <img width="56" height="66" alt="kiwimenu" src="https://github.com/user-attachments/assets/96437e0e-8884-4041-a3b2-c60ff15cd433" /> Kiwi Menu
 
 Kiwi Menu replaces the Activities button with a compact, macOS-inspired launcher that keeps your most common session actions one click away.
 
