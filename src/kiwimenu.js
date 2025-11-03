@@ -74,6 +74,11 @@ export const KiwiMenu = GObject.registerClass(
           this._syncActivitiesVisibility()
         )
       );
+      this._settingsSignalIds.push(
+        this._settings.connect('changed::app-store-command', () =>
+          this._renderPopupMenu()
+        )
+      );
 
       this._menuOpenSignalId = this.menu.connect(
         'open-state-changed',
@@ -189,27 +194,28 @@ export const KiwiMenu = GObject.registerClass(
 
       return layoutSource.map((item) => {
         // Translate menu title
-        let translatedTitle = item.title;
-        if (item.title) {
-          translatedTitle = this._gettext(item.title);
+        let translatedTitle = item.title ? this._gettext(item.title) : item.title;
+        let cmds = item.cmds ? [...item.cmds] : undefined;
+
+        if (item.type === 'menu' && item.commandSettingKey) {
+          cmds = this._resolveCommandFromSettings(item.commandSettingKey, cmds);
         }
 
-        // Special handling for logout with username
-        if (item.type === 'menu' && item.cmds?.includes('--logout')) {
+        if (item.type === 'menu' && cmds?.includes('--logout')) {
           const title = fullName
             ? this._gettext('Log Out %s...').format(fullName)
             : translatedTitle;
           return {
             ...item,
             title,
-            cmds: item.cmds ? [...item.cmds] : undefined,
+            cmds,
           };
         }
 
         return {
           ...item,
           title: translatedTitle,
-          cmds: item.cmds ? [...item.cmds] : undefined,
+          cmds,
         };
       });
     }
@@ -246,6 +252,36 @@ export const KiwiMenu = GObject.registerClass(
       } catch (error) {
         logError(error, 'Failed to open Force Quit overlay');
       }
+    }
+
+    _resolveCommandFromSettings(settingKey, fallback = []) {
+      if (!this._settings) {
+        return fallback;
+      }
+
+      let commandString;
+      try {
+        commandString = this._settings.get_string(settingKey);
+      } catch (error) {
+        logError(error, `Failed to read command setting '${settingKey}'`);
+        return fallback;
+      }
+
+      const trimmed = commandString?.trim?.() ?? '';
+      if (trimmed.length === 0) {
+        return fallback;
+      }
+
+      try {
+        const [success, argv] = GLib.shell_parse_argv(trimmed);
+        if (success && Array.isArray(argv) && argv.length > 0) {
+          return argv;
+        }
+      } catch (error) {
+        logError(error, `Failed to parse command '${trimmed}' for setting '${settingKey}'`);
+      }
+
+      return fallback;
     }
   }
 );

@@ -89,6 +89,18 @@ msgid "Adjust how the Kiwi Menu looks and behaves."
 msgstr "Pritaikykite Kiwi meniu išvaizdą ir elgesį."
 
 #: prefs.js
+msgid "App Store Command"
+msgstr "Programų parduotuvės komanda"
+
+#: prefs.js
+msgid "Command launched when opening the App Store menu item."
+msgstr "Komanda, paleidžiama atidarius programų parduotuvės meniu elementą."
+
+#: prefs.js
+msgid "Restore Default"
+msgstr "Atkurti numatytąją"
+
+#: prefs.js
 msgid "Menu Icon"
 msgstr "Meniu piktograma"
 

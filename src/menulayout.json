@@ -15,7 +15,8 @@
   {
     "type": "menu",
     "title": "App Store...",
-    "cmds": ["gnome-software"]
+    "cmds": ["gnome-software"],
+    "commandSettingKey": "app-store-command"
   },
   {
     "type": "separator"

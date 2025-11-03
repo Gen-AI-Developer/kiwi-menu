@@ -62,6 +62,87 @@ const OptionsPage = GObject.registerClass(
 
       menuGroup.add(iconSelectorRow);
 
+      const defaultAppStoreCommand = 'gnome-software';
+      const appStoreCommandRow = new Adw.EntryRow({
+        title: this._('App Store Command'),
+      });
+      appStoreCommandRow.set_subtitle?.(
+        this._('Command launched when opening the App Store menu item.')
+      );
+      appStoreCommandRow.set_placeholder_text?.(defaultAppStoreCommand);
+      appStoreCommandRow.set_text(this._settings.get_string('app-store-command'));
+
+      const restoreButton = new Gtk.Button({
+        icon_name: 'edit-undo-symbolic',
+        has_frame: false,
+        tooltip_text: this._('Restore Default'),
+        valign: Gtk.Align.CENTER,
+      });
+      restoreButton.add_css_class?.('circular');
+
+      const acceptButton = new Gtk.Button({
+        icon_name: 'emblem-ok-symbolic',
+        has_frame: false,
+        tooltip_text: this._('Apply Changes'),
+        valign: Gtk.Align.CENTER,
+      });
+      acceptButton.add_css_class?.('circular');
+      acceptButton.set_visible(false);
+      acceptButton.set_sensitive(false);
+
+      appStoreCommandRow.add_suffix?.(acceptButton);
+      appStoreCommandRow.add_suffix?.(restoreButton);
+
+      const clearEntryFocus = () => {
+        const root = appStoreCommandRow.get_root?.();
+        if (root && typeof root.set_focus === 'function') {
+          root.set_focus(null);
+        }
+      };
+
+      const updateRestoreButtonState = () => {
+        const currentText = appStoreCommandRow.get_text
+          ? appStoreCommandRow.get_text()
+          : appStoreCommandRow.text ?? '';
+        const isDefault = currentText.trim() === defaultAppStoreCommand;
+        restoreButton.set_sensitive(!isDefault);
+        restoreButton.set_visible(!isDefault);
+        acceptButton.set_sensitive(!isDefault);
+      };
+
+      restoreButton.connect('clicked', () => {
+        appStoreCommandRow.set_text(defaultAppStoreCommand);
+        clearEntryFocus();
+      });
+
+      acceptButton.connect('clicked', () => {
+        clearEntryFocus();
+      });
+
+      appStoreCommandRow.connect('notify::text', updateRestoreButtonState);
+      updateRestoreButtonState();
+
+      const keyController = new Gtk.EventControllerKey();
+      keyController.connect('key-pressed', (controller, keyval) => {
+        if (keyval === Gdk.KEY_Escape) {
+          clearEntryFocus();
+          return true;
+        }
+        return false;
+      });
+      appStoreCommandRow.add_controller?.(keyController);
+
+      const focusController = new Gtk.EventControllerFocus();
+      focusController.connect('enter', () => {
+        acceptButton.set_visible(true);
+      });
+      focusController.connect('leave', () => {
+        acceptButton.set_visible(false);
+      });
+      appStoreCommandRow.add_controller?.(focusController);
+
+      menuGroup.add(appStoreCommandRow);
+
       const behaviorGroup = new Adw.PreferencesGroup({
         title: this._('Panel'),
         description: this._('Hide or show the Activities button from the top bar.'),
@@ -132,6 +213,13 @@ const OptionsPage = GObject.registerClass(
       iconSelectorRow.connect('notify::selected', (widget) => {
         this._settings.set_int('icon', widget.selected);
       });
+
+      this._settings.bind(
+        'app-store-command',
+        appStoreCommandRow,
+        'text',
+        Gio.SettingsBindFlags.DEFAULT
+      );
 
       activityMenuSwitch.connect('notify::active', (widget) => {
         this._settings.set_boolean('activity-menu-visibility', !widget.get_active());

@@ -89,6 +89,18 @@ msgid "Adjust how the Kiwi Menu looks and behaves."
 msgstr "Ajuste a aparência e o comportamento do Kiwi Menu."
 
 #: prefs.js
+msgid "App Store Command"
+msgstr "Comando da loja de aplicações"
+
+#: prefs.js
+msgid "Command launched when opening the App Store menu item."
+msgstr "Comando executado ao abrir o item de menu da loja de aplicações."
+
+#: prefs.js
+msgid "Restore Default"
+msgstr "Restaurar predefinição"
+
+#: prefs.js
 msgid "Menu Icon"
 msgstr "Ícone do menu"
 

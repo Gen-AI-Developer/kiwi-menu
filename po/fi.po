@@ -89,6 +89,18 @@ msgid "Adjust how the Kiwi Menu looks and behaves."
 msgstr "Mukauta Kiwi-valikon ulkonäköä ja toimintaa."
 
 #: prefs.js
+msgid "App Store Command"
+msgstr "Sovelluskaupan komento"
+
+#: prefs.js
+msgid "Command launched when opening the App Store menu item."
+msgstr "Komento, joka käynnistetään avattaessa sovelluskaupan valikkokohde."
+
+#: prefs.js
+msgid "Restore Default"
+msgstr "Palauta oletus"
+
+#: prefs.js
 msgid "Menu Icon"
 msgstr "Valikon kuvake"
 

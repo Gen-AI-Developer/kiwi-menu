@@ -26,6 +26,11 @@
       <summary>Hide Settings quick settings button</summary>
       <description>Hide the settings quick settings action when enabled</description>
     </key>
+    <key type="s" name="app-store-command">
+      <default>'gnome-software'</default>
+      <summary>App Store command</summary>
+      <description>Command executed when launching the App Store menu item</description>
+    </key>
     <key type="i" name="prefs-default-width">
       <default>700</default>
       <summary>Default width for the preferences window</summary>
